@@ -1,0 +1,11 @@
+{
+  "name": "simpleExpressAPI",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Matheus D <55540506+MatheusDama@users.noreply.github.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "fs": "^0.0.1-security"
+  }
+}
