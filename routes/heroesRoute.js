@@ -1,32 +1,32 @@
 const fs = require("fs");
-// const { join } = fs;
-var path = require("path");
+const { join } = require("path");
 
-const filepath = path.join(__dirname, "heroes.json");
+const filepath = join(__dirname, "heroes.json");
 
 const HeroesGet = () => {
-  const db = fs.existsSync(filepath) ? fs.readFileSync(filepath) : [];
+  const db = fs.existsSync(filepath) 
+  ? fs.readFileSync(filepath) 
+  : [];
 
   try {
     return JSON.parse(db);
-  } catch (error) {
+  } catch (error) { 
     return [];
   }
 };
 
-const saveHeroes = (heroes) =>
-  fs.writeFileSync(filepath, JSON.stringify(heroes, null, "\t"));
+const saveHeroes = (heroes) => fs.writeFileSync(filePath, JSON.stringify(users, null, '\t'));
 
 const heroesRoute = (app) => {
   app
     .route("/heroes/:id?")
     .get((req, res) => {
-      const heroes = getHeroes();
+      const heroes = HeroesGet();
 
       res.send({ heroes });
     })
     .post((req, res) => {
-      const heroes = getHeroes();
+      const heroes = HeroesGet();
 
       heroes.push(req.body);
       saveHeroes(heroes);
@@ -34,7 +34,7 @@ const heroesRoute = (app) => {
       res.status(201).send("ok");
     })
     .put((req, res) => {
-      const heroes = getHeroes();
+      const heroes = HeroesGet();
 
       saveHeroes(
         heroes.map((hero) => {
@@ -50,7 +50,7 @@ const heroesRoute = (app) => {
       res.status(201).send("ok");
     })
     .delete((req, res) => {
-      const heroes = getHeroes();
+      const heroes = HeroesGet();
 
       saveHeroes(heroes.filter((hero) => hero.id !== req.params.id));
 
